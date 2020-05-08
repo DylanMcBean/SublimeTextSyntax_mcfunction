@@ -1,0 +1,206 @@
+%YAML 1.2
+---
+name: Minecraft
+file_extensions: [mcfunction]
+scope: source
+
+variables:
+  ident: '[A-Za-z_][A-Za-z_0-9]*'
+
+contexts:
+  main:
+    #third command highlighting DATA
+    - match: (data).(get|merge|modify|remove).(block|entity|storage)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #DATAPACK
+    - match: (datapack).(list).(avaliable|enabled)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #EXECUTE
+    - match: (execute).(align).(x|y|z)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(enchored).(eyes|feet)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(facing).(entity)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(if|unless).(block|blocks|data|entity|predicate|score)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(in).((minecraft:)*(overworld|the_end|the_nether))
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(positioned|rotated).(as)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (execute).(store).(result|success)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #FORCELOAD
+    - match: (forceload).(remove).(all)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #GAMERULE
+    - match: (forceload).(announceAdvancements|commandBlockOutput|disableElytraMovementCheck|disableRaids|doDaylightCycle|doEntityDrops|doFireTick|doImmediateRespawn|doInsomnia|doLimitedCrafting|doMobLoot|doModSpawning|doPatrolSpawning|doTileDrops|doTraderSpawning|doWeatherCycle|drowningDamage|fallDamage|fireDamage|keepIncentory|logAdminCommands|maxCommandChainLength|maxEntityCraming|mobGriefing|naturalRegeneration|randomTickSpeed|reducedDebugInfo|sendCommandFeedback|showDeathMessages|spawnRadius|spectatorsGenerateChunks).(true|false)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #LOOT
+    - match: (loot).(replace).(block|entity)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #SCOREBOARD
+    - match: (scoreboard).(objectives).(add|list|modify|remove|setdisplay)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (scoreboard).(players).(add|enable|get|list|operation|remove|reset|set)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #TIME
+    - match: (time).(query).(day|daytime|gametime)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (time).(set).(day|midnight|night|noon)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    #WORLDBORDER
+    - match: (worldborder).(damage).(amount|buffer)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+    - match: (worldborder).(warning).(distance|time)
+      captures: 
+        1: entity.name markup.bold
+        2: storage.type
+        3: string
+
+
+
+    #second highlighting 
+    - match: ((?<=advancement\W)(grant|evoke)|
+              (?<=bossbar\W)(add|get|list|remove|set)|
+              (?<=data\W)(get|merge|modify|remove)|
+              (?<=datapack\W)(disable|enable|list)|
+              (?<=debug\W)(report|start|stop)|
+              (?<=defaultgamemode\W)(adventure|creative|spectator|survival)|
+              (?<=difficulty\W)(easy|hard|normal|peaceful)|
+              (?<=effect\W)(give|clear)|
+              (?<=execute\W)(align|anchored|as|at|facing|if|in|positioned|rotated|run|store|unless)|
+              (?<=experience\W)(add|query|set)|
+              (?<=forceload\W)(add|query|remove)|
+              (?<=gamemode\W)(adventure|creative|spectator|survival)|
+              (?<=gamerule\W)(announceAdvancements|commandBlockOutput|disableElytraMovementCheck|disableRaids|doDaylightCycle|doEntityDrops|doFireTick|doImmediateRespawn|doInsomnia|doLimitedCrafting|doMobLoot|doModSpawning|doPatrolSpawning|doTileDrops|doTraderSpawning|doWeatherCycle|drowningDamage|fallDamage|fireDamage|keepIncentory|logAdminCommands|maxCommandChainLength|maxEntityCraming|mobGriefing|naturalRegeneration|randomTickSpeed|reducedDebugInfo|sendCommandFeedback|showDeathMessages|spawnRadius|spectatorsGenerateChunks)|
+              (?<=list\W)(uuids)|
+              (?<=locate\W)(Bastion_Remnant|Burried_Treasure|Desert_Pyramid|EndCity|Fortress|Igloo|Jungle_Pyramid|Mansion|Mineshaft|Monument|Nether_Fossil|Ocean_Ruin|Pillager_Outpost|Ruined_Portal|Shipwreck|Stronghold|Swamp_Hut|Village)|
+              (?<=locatebiome\W)(minecraft:)(badlands|badlands_plateau|bamboo_jungle|amboo_jungle_hills|basalt_deltas|beach|birch_forest|birch_forest_hills|cold_ocean|crimson_forrest|dark_forest|dark_forest_hills|deep_cold_ocean|deep_frozen_ocean|deep_lukewarm_ocean|deep_ocean|deep_warm_ocean|desert|desert_hills|desert_lake|end_barrens|end_highlands|end_midlands|eroded_badlands|flower_forest|forest|frozen_ocean|frozen_river|giant_spruce_taiga|giant_spruce_taiga_hills|giant_tree_taiga|giant_tree_taiga_hills|gravelly_mountains|ice_spikes|jungle|jungle_edge|jungle_hills|lukewarm_ocean|modified_badlands_plateau|modified_gravelly_mountains|modified_jungle|modified_jungle_edge|modified_wooded_badlands_plateau|mountain_edge|mountains|mushroom_field_shore|mushroom_fields|nether_wastes|ocean|plains|river|savanna|savanna_plateau|shattered_savanna|shattered_savanna_plateau|small_end_islands|snowy_beach|snowy_mountains|snowy_taiga|snowy_taiga_hills|snowy_taiga_mountains|snowy_tundra|soul_sand_valley|stone_shore|sunflower_plains|swamp|swamp_hills|taiga|taiga_hills|taiga_mountains|tall_birch_forest|tall_birch_hills|the_end|the_void|warm_ocean|warped_forest|wooded_badlands_plateau|wooded_hills|wooded_mountains)|
+              (?<=loot\W)(give|insert|replace|spawn)|
+              (?<=particle\W)(minecraft:)(embient_entity_effect|angry_villager|ash|barrier|block|bubble|bubble_column_up|bubble_pop|campfire_cosy_smoke|campfire_signal_smoke|cloud|composter|crimson_spore|crit|current_down|damage_indicator|dolphin|dragon_breath|dripping_honey|dripping_lava|dripping_obsidian_tear|dripping_water|dust|effect|elder_guardian|enchant|enchanted_hit|end_rod|entity_effect|explosion|explosion_emitter|falling_dust|falling_honey|falling_lava|falling_nectar|falling_obsidian_tear|falling_water|firework|fishing|flame|flash|happy_villager|heart|instant_effect|item|item_slime|item_slowball|landing_honey|landing_lava|landing_obsidian_tear|large_smoke|lava|mycelium|nautilus|note|poof|portal|rain|reverse_portal|smoke|sneeze|soul|soul_fire_flame|spit|splash|squid_ink|sweep_attack|totem_of_undying|underwater|warped_spore|white_ash|witch)|
+              (?<=recipe\W)(give|take)|
+              (?<=replaceitem\W)(block|item)|
+              (?<=schedule\W)(clear|function)|
+              (?<=scoreboard\W)(objectives|players)|
+              (?<=summon\W)(minecraft:)(area_effect_cloud|armor_stand|cave_spider|chest_minecart|command_block_minecart|dragon_fireball|elder_guardian|end_crystal|ender_dragon|ender_pearl|evoker_fangs|experience_bottle|experience_orb|eye_of_ender|falling_block|firework_rocket|furnace_minecart|hopper_minecart|iron_golem|item_frame|leash_knot|lightning_bolt|llama_spit|magma_cube|polar_bear|shulker_bullet|skeleton_horse|small_fireball|snow_golen|spawner_minecart|spectral_arrow|tnt_minecart|trader_llama|tropical_fish|wandering_trader|wither_skeleton|wither_skull|zombie_horse|zombie_villager|zombified_piglin|arrow|bat|bee|blaze|boat|cat|chicken|cod|cow|creeper|dolphin|donkey|drowned|egg|enderman|endermit|evoker|fireball|fox|ghast|giant|guardian|hoglin|horse|husk|illusioner|item|llama|minecart|mooshroom|mule|ocelot|painting|panda|parrot|phantom|pig|piglin|pillager|potion|pufferfish|rabbit|ravager|salmon|sheep|shulker|silverfish|skeleton|slime|snowball|spider|squid|stray|strider|tnt|trident|turtle|vex|villager|vindicator|witch|wither|wolf|zoglin|zombie)|
+              (?<=team\W)(add|empty|join||leave|list|modify|remove)|
+              (?<=time\W)(add|query|set)|
+              (?<=weather\W)(clear|rain|thunder)|
+              (?<=worldborder\W)(add|center|damage|get|set|warning)|
+              (?<=xp\W)(add|query|set)
+              )
+      scope: storage.type
+
+    #command starters
+    #check for inside quotes
+    - match: (\b(advancement|attribute|bossbar|clear|clone|data|datapack|debug|defaultgamemode|difficulty|effect|enchant|execute|experience|fill|forceload|function|gamemode|gamerule|give|help|kick|kill|list|locate|locatebiome|loot|me|msg|particle|playsound|publish|recipe|reload|replaceitem|say|schedule|scoreboard|seed|setblock|setworldspawn|spawnpoint|spectate|spreadplayers|stopsound|summon|tag|team|teammsg|teleport|tell|tellraw|time|title|tm|tp|trigger|w|weather|worldborder|xp)\b)(?=[^"]*(?:"[^"]*"[^"]*)*$)
+      scope: entity.name markup.bold
+    #check for outside quotes
+    - match: \/\b(advancement|attribute|bossbar|clear|clone|data|datapack|debug|defaultgamemode|difficulty|effect|enchant|execute|experience|fill|forceload|function|gamemode|gamerule|give|help|kick|kill|list|locate|locatebiome|loot|me|msg|particle|playsound|publish|recipe|reload|replaceitem|say|schedule|scoreboard|seed|setblock|setworldspawn|spawnpoint|spectate|spreadplayers|stopsound|summon|tag|team|teammsg|teleport|tell|tellraw|time|title|tm|tp|trigger|w|weather|worldborder|xp)\b
+      scope: entity.name markup.bold
+
+    #@ slectors
+    - match: \@\b(a|e|p|r|s){1}\b
+      scope: storage.type
+
+    #coordinates
+    - match: (((~|\^)?-?(\d+)|(~|\^)-?(\d+)?|(~|\^)-?(\d+)){1}(\s+((~|\^)?-?(\d+)|(~|\^)-?(\d+)?|(~|\^)-?(\d+))){2})
+      scope: storage.type markup.bold
+
+    #strings
+    - match: (["'])(?:(?=(\\?))\2.)*?\1
+      scope: string
+
+    #brackets
+    - match: (\{|\[)
+      push: brackets
+      scope: constant.numeric
+    - match: (\}|\])
+      scope: invalid.illegal.stray-bracket-end
+
+    #minecraft items
+    - match: (minecraft:)*(name_tag|iron_shovel|iron_pickaxe|iron_axe|flint_and_steel|spectral_arrow|tipped_arrow|dried_kelp|iron_ingot|gold_ingot|iron_sword|wooden_sword|wooden_shovel|wooden_pickaxe|wooden_axe|stone_sword|stone_shovel|stone_pickaxe|stone_axe|diamond_sword|diamond_shovel|diamond_pickaxe|diamond_axe|mushroom_stew|golden_sword|golden_shovel|golden_pickaxe|golden_axe|wooden_hoe|stone_hoe|iron_hoe|diamond_hoe|golden_hoe|wheat_seeds|pumpkin_seeds|melon_seeds|melon_slice|leather_helmet|leather_chestplate|leather_leggings|leather_boots|chainmail_helmet|chainmail_chestplate|chainmail_leggings|chainmail_boots|iron_helmet|iron_chestplate|iron_leggings|iron_boots|diamond_helmet|diamond_chestplate|diamond_leggings|diamond_boots|golden_helmet|golden_chestplate|golden_leggings|golden_boots|cooked_porkchop|cooked_chicken|cooked_mutton|cooked_rabbit|rabbit_stew|rabbit_foot|rabbit_hide|cooked_beef|item_frame|golden_apple|enchanted_golden_apple|water_bucket|lava_bucket|pufferfish_bucket|salmon_bucket|cod_bucket|tropical_fish_bucket|oak_boat|spruce_boat|birch_boat|jungle_boat|acacia_boat|dark_oak_boat|milk_bucket|clay_ball|slime_ball|chest_minecart|furnace_minecart|tnt_minecart|hopper_minecart|command_block_minecart|fishing_rod|glowstone_dust|tropical_fish|cooked_cod|cooked_salmon|music_disc_13|music_disc_cat|music_disc_blocks|music_disc_chirp|music_disc_far|music_disc_mall|music_disc_mellohi|music_disc_stal|music_disc_strad|music_disc_ward|music_disc_11|music_disc_wait|music_disc_pigstep|ink_sac|red_dye|green_dye|cocoa_beans|lapis_lazuli|purple_dye|cyan_dye|light_gray_dye|gray_dye|pink_dye|lime_dye|yellow_dye|light_blue_dye|magenta_dye|orange_dye|bone_meal|blue_dye|black_dye|brown_dye|white_dye|filled_map|rotten_flesh|ender_pearl|blaze_rod|ghast_tear|nether_wart|splash_potion|lingering_potion|end_crystal|gold_nugget|glass_bottle|spider_eye|fermented_spider_eye|blaze_powder|magma_cream|brewing_stand|ender_eye|glistering_melon_slice|bat_spawn_egg|bee_spawn_egg|blaze_spawn_egg|cat_spawn_egg|cave_spider_spawn_egg|chicken_spawn_egg|cod_spawn_egg|cow_spawn_egg|creeper_spawn_egg|dolphin_spawn_egg|donkey_spawn_egg|drowned_spawn_egg|elder_guardian_spawn_egg|enderman_spawn_egg|endermite_spawn_egg|evoker_spawn_egg|ghast_spawn_egg|guardian_spawn_egg|hoglin_spawn_egg|horse_spawn_egg|husk_spawn_egg|ravager_spawn_egg|llama_spawn_egg|magma_cube_spawn_egg|mooshroom_spawn_egg|mule_spawn_egg|ocelot_spawn_egg|panda_spawn_egg|parrot_spawn_egg|pig_spawn_egg|piglin_spawn_egg|pillager_spawn_egg|phantom_spawn_egg|polar_bear_spawn_egg|pufferfish_spawn_egg|rabbit_spawn_egg|fox_spawn_egg|salmon_spawn_egg|sheep_spawn_egg|shulker_spawn_egg|silverfish_spawn_egg|skeleton_spawn_egg|skeleton_horse_spawn_egg|slime_spawn_egg|spider_spawn_egg|squid_spawn_egg|stray_spawn_egg|strider_spawn_egg|trader_llama_spawn_egg|tropical_fish_spawn_egg|turtle_spawn_egg|vex_spawn_egg|villager_spawn_egg|wandering_trader_spawn_egg|vindicator_spawn_egg|witch_spawn_egg|wither_skeleton_spawn_egg|wolf_spawn_egg|zoglin_spawn_egg|zombie_spawn_egg|zombie_horse_spawn_egg|zombified_piglin_spawn_egg|zombie_villager_spawn_egg|experience_bottle|fire_charge|writable_book|written_book|flower_pot|golden_carrot|baked_potato|poisonous_potato|carrot_on_a_stick|nether_star|pumpkin_pie|enchanted_book|firework_rocket|firework_star|nether_brick|armor_stand|iron_horse_armor|golden_horse_armor|diamond_horse_armor|leather_horse_armor|prismarine_shard|prismarine_crystals|chorus_fruit|popped_chorus_fruit|beetroot_seeds|beetroot_soup|dragon_breath|totem_of_undying|shulker_shell|iron_nugget|knowledge_book|debug_stick|turtle_helmet|phantom_membrane|nautilus_shell|heart_of_the_sea|suspicious_stew|creeper_banner_pattern|skull_banner_pattern|flower_banner_pattern|mojang_banner_pattern|globe_banner_pattern|sweet_berries|honey_bottle|lodestone_compass|netherite_scrap|netherite_ingot|netherite_helmet|netherite_chestplate|netherite_leggings|netherite_boots|netherite_axe|netherite_pickaxe|netherite_hoe|netherite_shovel|netherite_sword|warped_fungus_on_a_stick|polished_granite|polished_diorite|polished_andesite|hay_block|grass_block|coarse_dirt|oak_planks|spruce_planks|birch_planks|jungle_planks|acacia_planks|dark_oak_planks|oak_sapling|spruce_sapling|birch_sapling|jungle_sapling|acacia_sapling|dark_oak_sapling|oak_door|spruce_door|birch_door|jungle_door|acacia_door|dark_oak_door|red_sand|chiseled_sandstone|cut_sandstone|red_sandstone|chiseled_red_sandstone|cut_red_sandstone|gold_ore|nether_gold_ore|iron_ore|coal_ore|oak_wood|spruce_wood|birch_wood|jungle_wood|acacia_wood|dark_oak_wood|oak_log|spruce_log|birch_log|jungle_log|acacia_log|dark_oak_log|stripped_oak_log|stripped_spruce_log|stripped_birch_log|stripped_jungle_log|stripped_acacia_log|stripped_dark_oak_log|stripped_oak_wood|stripped_spruce_wood|stripped_birch_wood|stripped_jungle_wood|stripped_acacia_wood|stripped_dark_oak_wood|oak_leaves|spruce_leaves|birch_leaves|jungle_leaves|acacia_leaves|dark_oak_leaves|dead_bush|wet_sponge|kelp_plant|dried_kelp_block|white_stained_glass|orange_stained_glass|magenta_stained_glass|light_blue_stained_glass|yellow_stained_glass|lime_stained_glass|pink_stained_glass|gray_stained_glass|light_gray_stained_glass|cyan_stained_glass|purple_stained_glass|blue_stained_glass|brown_stained_glass|green_stained_glass|red_stained_glass|black_stained_glass|white_stained_glass_pane|orange_stained_glass_pane|magenta_stained_glass_pane|light_blue_stained_glass_pane|yellow_stained_glass_pane|lime_stained_glass_pane|pink_stained_glass_pane|gray_stained_glass_pane|light_gray_stained_glass_pane|cyan_stained_glass_pane|purple_stained_glass_pane|blue_stained_glass_pane|brown_stained_glass_pane|green_stained_glass_pane|red_stained_glass_pane|black_stained_glass_pane|glass_pane|blue_orchid|azure_bluet|red_tulip|orange_tulip|white_tulip|pink_tulip|oxeye_daisy|lily_of_the_valley|wither_rose|tall_grass|tall_seagrass|large_fern|rose_bush|sea_pickle|brown_mushroom|red_mushroom_block|brown_mushroom_block|mushroom_stem|gold_block|iron_block|smooth_stone|smooth_sandstone|smooth_red_sandstone|smooth_quartz|stone_slab|smooth_stone_slab|sandstone_slab|red_sandstone_slab|cut_sandstone_slab|cut_red_sandstone_slab|petrified_oak_slab|cobblestone_slab|brick_slab|stone_brick_slab|nether_brick_slab|quartz_slab|oak_slab|spruce_slab|birch_slab|jungle_slab|acacia_slab|dark_oak_slab|dark_prismarine_slab|prismarine_slab|prismarine_brick_slab|mossy_cobblestone|wall_torch|soul_torch|soul_wall_torch|respawn_anchor|oak_stairs|spruce_stairs|birch_stairs|jungle_stairs|acacia_stairs|dark_oak_stairs|dark_prismarine_stairs|prismarine_stairs|prismarine_brick_stairs|trapped_chest|redstone_wire|diamond_ore|coal_block|diamond_block|crafting_table|oak_sign|spruce_sign|birch_sign|acacia_sign|jungle_sign|dark_oak_sign|oak_wall_sign|spruce_wall_sign|birch_wall_sign|acacia_wall_sign|jungle_wall_sign|dark_oak_wall_sign|powered_rail|activator_rail|detector_rail|cobblestone_stairs|sandstone_stairs|red_sandstone_stairs|stone_pressure_plate|oak_pressure_plate|spruce_pressure_plate|birch_pressure_plate|jungle_pressure_plate|acacia_pressure_plate|dark_oak_pressure_plate|light_weighted_pressure_plate|heavy_weighted_pressure_plate|iron_door|redstone_ore|redstone_torch|redstone_wall_torch|stone_button|oak_button|spruce_button|birch_button|jungle_button|acacia_button|dark_oak_button|white_carpet|orange_carpet|magenta_carpet|light_blue_carpet|yellow_carpet|lime_carpet|pink_carpet|gray_carpet|light_gray_carpet|cyan_carpet|purple_carpet|blue_carpet|brown_carpet|green_carpet|red_carpet|black_carpet|frosted_ice|packed_ice|blue_ice|white_terracotta|orange_terracotta|magenta_terracotta|light_blue_terracotta|yellow_terracotta|lime_terracotta|pink_terracotta|gray_terracotta|light_gray_terracotta|cyan_terracotta|purple_terracotta|blue_terracotta|brown_terracotta|green_terracotta|red_terracotta|black_terracotta|sugar_cane|oak_fence|spruce_fence|birch_fence|jungle_fence|dark_oak_fence|acacia_fence|oak_fence_gate|spruce_fence_gate|birch_fence_gate|jungle_fence_gate|dark_oak_fence_gate|acacia_fence_gate|pumpkin_stem|attached_pumpkin_stem|carved_pumpkin|jack_o_lantern|soul_sand|nether_portal|white_wool|orange_wool|magenta_wool|light_blue_wool|yellow_wool|lime_wool|pink_wool|gray_wool|light_gray_wool|cyan_wool|purple_wool|blue_wool|brown_wool|green_wool|red_wool|black_wool|lapis_ore|lapis_block|note_block|set_spawn|oak_trapdoor|spruce_trapdoor|birch_trapdoor|jungle_trapdoor|acacia_trapdoor|dark_oak_trapdoor|iron_trapdoor|stone_bricks|mossy_stone_bricks|cracked_stone_bricks|chiseled_stone_bricks|infested_stone|infested_cobblestone|infested_stone_bricks|infested_mossy_stone_bricks|infested_cracked_stone_bricks|infested_chiseled_stone_bricks|sticky_piston|iron_bars|brick_stairs|stone_brick_stairs|nether_bricks|nether_brick_fence|nether_brick_stairs|nether_wart|warped_wart_block|warped_stem|stripped_warped_stem|warped_hyphae|stripped_warped_hyphae|crimson_stem|stripped_crimson_stem|crimson_hyphae|stripped_crimson_hyphae|warped_nylium|crimson_nylium|warped_fungus|crimson_fungus|crimson_roots|warped_roots|nether_sprouts|weeping_vines|weeping_vines_plant|twisting_vines|twisting_vines_plant|soul_soil|polished_basalt|warped_planks|warped_slab|warped_pressure_plate|warped_fence|warped_trapdoor|warped_fence_gate|warped_stairs|warped_button|warped_door|warped_sign|warped_wall_sign|crimson_planks|crimson_slab|crimson_pressure_plate|crimson_fence|crimson_trapdoor|crimson_fence_gate|crimson_stairs|crimson_button|crimson_door|crimson_sign|crimson_wall_sign|soul_fire|enchanting_table|chipped_anvil|damaged_anvil|end_stone|end_portal_frame|lily_pad|dragon_egg|redstone_lamp|ender_chest|emerald_ore|emerald_block|redstone_block|tripwire_hook|command_block|repeating_command_block|chain_command_block|cobblestone_wall|mossy_cobblestone_wall|daylight_detector|nether_quartz_ore|quartz_block|chiseled_quartz_block|quartz_pillar|quartz_stairs|slime_block|prismarine_bricks|dark_prismarine|sea_lantern|end_rod|chorus_plant|chorus_flower|purpur_block|purpur_pillar|purpur_stairs|purpur_slab|end_stone_bricks|grass_path|magma_block|nether_wart_block|red_nether_bricks|bone_block|shulker_box|white_shulker_box|orange_shulker_box|magenta_shulker_box|light_blue_shulker_box|yellow_shulker_box|lime_shulker_box|pink_shulker_box|gray_shulker_box|light_gray_shulker_box|cyan_shulker_box|purple_shulker_box|blue_shulker_box|brown_shulker_box|green_shulker_box|red_shulker_box|black_shulker_box|white_glazed_terracotta|orange_glazed_terracotta|magenta_glazed_terracotta|light_blue_glazed_terracotta|yellow_glazed_terracotta|lime_glazed_terracotta|pink_glazed_terracotta|gray_glazed_terracotta|light_gray_glazed_terracotta|cyan_glazed_terracotta|purple_glazed_terracotta|blue_glazed_terracotta|brown_glazed_terracotta|green_glazed_terracotta|red_glazed_terracotta|black_glazed_terracotta|black_concrete|red_concrete|green_concrete|brown_concrete|blue_concrete|purple_concrete|cyan_concrete|light_gray_concrete|gray_concrete|pink_concrete|lime_concrete|yellow_concrete|light_blue_concrete|magenta_concrete|orange_concrete|white_concrete|black_concrete_powder|red_concrete_powder|green_concrete_powder|brown_concrete_powder|blue_concrete_powder|purple_concrete_powder|cyan_concrete_powder|light_gray_concrete_powder|gray_concrete_powder|pink_concrete_powder|lime_concrete_powder|yellow_concrete_powder|light_blue_concrete_powder|magenta_concrete_powder|orange_concrete_powder|white_concrete_powder|turtle_egg|piston_head|moving_piston|red_mushroom|snow_block|attached_melon_stem|melon_stem|brewing_stand|end_portal|flower_pot|potted_oak_sapling|potted_spruce_sapling|potted_birch_sapling|potted_jungle_sapling|potted_acacia_sapling|potted_dark_oak_sapling|potted_fern|potted_dandelion|potted_poppy|potted_blue_orchid|potted_allium|potted_azure_bluet|potted_red_tulip|potted_orange_tulip|potted_white_tulip|potted_pink_tulip|potted_oxeye_daisy|potted_cornflower|potted_lily_of_the_valley|potted_wither_rose|potted_red_mushroom|potted_brown_mushroom|potted_dead_bush|potted_cactus|potted_bamboo|potted_crimson_fungus|potted_warped_fungus|potted_crimson_roots|potted_warped_roots|skeleton_wall_skull|skeleton_skull|wither_skeleton_wall_skull|wither_skeleton_skull|zombie_wall_head|zombie_head|player_wall_head|player_head|creeper_wall_head|creeper_head|dragon_wall_head|dragon_head|end_gateway|structure_void|structure_block|void_air|cave_air|bubble_column|dead_tube_coral_block|dead_brain_coral_block|dead_bubble_coral_block|dead_fire_coral_block|dead_horn_coral_block|tube_coral_block|brain_coral_block|bubble_coral_block|fire_coral_block|horn_coral_block|tube_coral|brain_coral|bubble_coral|fire_coral|horn_coral|dead_tube_coral|dead_brain_coral|dead_bubble_coral|dead_fire_coral|dead_horn_coral|tube_coral_fan|brain_coral_fan|bubble_coral_fan|fire_coral_fan|horn_coral_fan|dead_tube_coral_fan|dead_brain_coral_fan|dead_bubble_coral_fan|dead_fire_coral_fan|dead_horn_coral_fan|tube_coral_wall_fan|brain_coral_wall_fan|bubble_coral_wall_fan|fire_coral_wall_fan|horn_coral_wall_fan|dead_tube_coral_wall_fan|dead_brain_coral_wall_fan|dead_bubble_coral_wall_fan|dead_fire_coral_wall_fan|dead_horn_coral_wall_fan|bamboo_sapling|polished_granite_stairs|smooth_red_sandstone_stairs|mossy_stone_brick_stairs|polished_diorite_stairs|mossy_cobblestone_stairs|end_stone_brick_stairs|stone_stairs|smooth_sandstone_stairs|smooth_quartz_stairs|granite_stairs|andesite_stairs|red_nether_brick_stairs|polished_andesite_stairs|diorite_stairs|polished_granite_slab|smooth_red_sandstone_slab|mossy_stone_brick_slab|polished_diorite_slab|mossy_cobblestone_slab|end_stone_brick_slab|smooth_sandstone_slab|smooth_quartz_slab|granite_slab|andesite_slab|red_nether_brick_slab|polished_andesite_slab|diorite_slab|brick_wall|prismarine_wall|red_sandstone_wall|mossy_stone_brick_wall|granite_wall|stone_brick_wall|nether_brick_wall|andesite_wall|red_nether_brick_wall|sandstone_wall|end_stone_brick_wall|diorite_wall|blast_furnace|cartography_table|fletching_table|smithing_table|ominous_banner|soul_lantern|sweet_berry_bush|soul_campfire|bee_nest|honey_block|honeycomb_block|netherite_block|ancient_debris|crying_obsidian|blackstone_slab|blackstone_stairs|blackstone_wall|polished_blackstone_bricks|polished_blackstone_brick_slab|polished_blackstone_brick_stairs|polished_blackstone_brick_wall|chiseled_polished_blackstone|cracked_polished_blackstone_bricks|gilded_blackstone|polished_blackstone|polished_blackstone_wall|polished_blackstone_slab|polished_blackstone_stairs|polished_blackstone_pressure_plate|polished_blackstone_button|cracked_nether_bricks|chiseled_nether_bricks|quartz_bricks|black_bed|red_bed|green_bed|brown_bed|blue_bed|purple_bed|cyan_bed|light_gray_bed|gray_bed|pink_bed|lime_bed|yellow_bed|light_blue_bed|magenta_bed|orange_bed|white_bed|black_banner|red_banner|green_banner|brown_banner|blue_banner|purple_banner|cyan_banner|light_gray_banner|gray_banner|pink_banner|lime_banner|yellow_banner|light_blue_banner|magenta_banner|orange_banner|white_banner|lead|apple|cookie|bow|arrow|coal|charcoal|diamond|emerald|stick|bowl|string|feather|gunpowder|wheat|bread|flint|porkchop|chicken|mutton|rabbit|beef|painting|sign|bucket|minecart|saddle|redstone|snowball|leather|brick|paper|book|egg|compass|clock|cod|salmon|pufferfish|bone|sugar|shears|potion|cauldron|map|carrot|potato|quartz|beetroot|elytra|trident|scute|crossbow|honeycomb|shield|air|barrier|stone|granite|diorite|andesite|dirt|podzol|cobblestone|bedrock|water|lava|sand|sandstone|gravel|grass|fern|sponge|glass|kelp|dandelion|poppy|allium|cornflower|sunflower|lilac|peony|seagrass|bricks|tnt|bookshelf|obsidian|torch|fire|spawner|chest|wheat|farmland|furnace|ladder|scaffolding|rail|lever|snow|ice|cactus|clay|terracotta|jukebox|pumpkin|netherrack|glowstone|dispenser|dropper|cake|cobweb|piston|melon|vine|shroomlight|basalt|cauldron|anvil|mycelium|cocoa|tripwire|beacon|carrots|potatoes|hopper|prismarine|beetroots|observer|loom|conduit|bamboo|jigsaw|composter|target|barrel|smoker|grindstone|lectern|stonecutter|bell|lantern|campfire|beehive|lodestone|blackstone|chain|repeater|comparator)(?=[^"]*(?:"[^"]*"[^"]*)*$)
+      scope: variable.language
+
+      #minecraft mobs
+    - match: (minecraft:)*(area_effect_cloud|armor_stand|cave_spider|chest_minecart|command_block_minecart|dragon_fireball|elder_guardian|end_crystal|ender_dragon|ender_pearl|evoker_fangs|experience_bottle|experience_orb|eye_of_ender|falling_block|firework_rocket|furnace_minecart|hopper_minecart|iron_golem|item_frame|leash_knot|lightning_bolt|llama_spit|magma_cube|polar_bear|shulker_bullet|skeleton_horse|small_fireball|snow_golen|spawner_minecart|spectral_arrow|tnt_minecart|trader_llama|tropical_fish|wandering_trader|wither_skeleton|wither_skull|zombie_horse|zombie_villager|zombified_piglin|arrow|bat|bee|blaze|boat|cat|chicken|cod|cow|creeper|dolphin|donkey|drowned|egg|enderman|endermit|evoker|fireball|fox|ghast|giant|guardian|hoglin|horse|husk|illusioner|item|llama|minecart|mooshroom|mule|ocelot|painting|panda|parrot|phantom|pig|piglin|pillager|potion|pufferfish|rabbit|ravager|salmon|sheep|shulker|silverfish|skeleton|slime|snowball|spider|squid|stray|strider|tnt|trident|turtle|vex|villager|vindicator|witch|wither|wolf|zoglin|zombie)(?=[^"]*(?:"[^"]*"[^"]*)*$)
+      scope: variable.language
+    
+    #comments
+    - match: (^#[\w\W]*)
+      scope: comment
+
+    #block tags
+    - match: ([\a#]{1})(minecraft:)*(acacia_logs|anvil|bambo_plantable_on|banners|beacon_base_blocks|beds|bee_growables|beehives|birch_logs|buttons|campfires|carpets|climbable|coral_blocks|coral_plants|corals|crimson_stems|crops|dark_oak_logs|doors|dragon_immune|enderman_holdable|fences|fire|flower_pots|flowers|gold_ores|guarded_by_piglins|hoglin_repellents|ice|impermeable|jungle_logs|leaves|logs|logs_that_burn|non_flammable_wood|nylium|oak_logs|piglin_repellents|planks|portals|pressure_plates|rails|sand|saplings|shulker_boxes|signs|slabs|small_flowers|soul_fire_base_blocks|soul_speed_blocks|spruce_logs|stairs|standing_signs|stone_bricks|stone_pressure_plates|strider_warm_blocks|tall_flowers|trapdoors|underwater_bonemeals|valid_spawn|wall_corals|wall_post_override|wall_signs|walls|warped_stems|wart_blocks|wither_immune|wither_summon_base_blocks|wooden_buttons|wooden_doors|wooden_fences|wooden_pressure_plates|wooden_slabs|wooden_stairs|wooden_trapdoors|wool)
+      scope: string
+
+    #stuff inside brackets
+    - match: '\b{{ident}}\b'
+      scope: entity.name.tag
+
+    #numbers
+    - match: \d+
+      scope: storage.type
+
+    #Anything else
+    - match: (.?)
+      scope: markup.italic
+
+
+  brackets:
+    - match: (\}|\])
+      pop: true
+      scope: constant.numeric
+    - include: main
